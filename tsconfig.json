@@ -8,8 +8,12 @@
     "esModuleInterop": true,
     "jsx": "react",
     "lib": ["dom", "es2019"],
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
-} 
+}
