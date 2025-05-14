@@ -1,6 +1,10 @@
 import { ComponentMemoryUsage, MemoryMetrics, MemorySnapshot } from '@/types'
 import { generateUniqueId } from '@/utils'
 
+/**
+ * Core Memory Tracker class
+ * Responsible for tracking memory usage in the application
+ */
 export class MemoryTracker {
   private snapshots: MemorySnapshot[] = []
   private intervalId: number | null = null
