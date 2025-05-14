@@ -22,7 +22,7 @@ module.exports = {
     'react/prop-types': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
   },
   overrides: [
     {
