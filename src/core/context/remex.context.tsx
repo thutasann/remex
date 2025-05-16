@@ -16,10 +16,15 @@ import {
  * @description This type is used to store the Remex context.
  */
 type RemexContextType = {
+  /** Memory Tracker Instance */
   memoryTracker: MemoryTracker | null
+  /** Performance Tracker Instance */
   performanceTracker: PerformanceTracker | null
+  /** Remex Options Configs */
   config: RemexOptions
+  /** Update Remex Options Config */
   updateConfig: (options: Partial<RemexOptions>) => void
+  /** Whether the Remex is initialized or not */
   isInitialized: boolean
 }
 

@@ -41,6 +41,6 @@ export type RenderProfilerProps = {
   /** Whether to track this component's renders */
   enabled?: boolean
 
-  /** Callback when render occurs */
-  onRender?: (id: string, phase: 'mount' | 'update', actualDuration: number) => void
+  /** user-provided onRender Callback when render occurs */
+  onRender?: (id: string, phase: 'mount' | 'update' | 'nested-update', actualDuration: number) => void
 }

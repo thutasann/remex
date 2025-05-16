@@ -1,4 +1,5 @@
 export * from './configs'
 export * from './core'
+export * from './profiler'
 export * from './types'
 export * from './utils'
