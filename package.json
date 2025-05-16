@@ -1,5 +1,5 @@
 {
-  "name": "@thutasann/remex",
+  "name": "remexjs",
   "version": "0.1.0",
   "description": "Advanced memory and performance analysis tool for React applications",
   "main": "dist/index.js",
