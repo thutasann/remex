@@ -3,9 +3,9 @@
 <div align="center">
   <p><strong>Advanced Memory and Performance Analysis for React Applications</strong></p>
   <p>
-    <a href="https://www.npmjs.com/package/remex"><img src="https://img.shields.io/npm/v/remex.svg?style=flat-square" alt="npm version" /></a>
-    <a href="https://www.npmjs.com/package/remex"><img src="https://img.shields.io/npm/dm/remex.svg?style=flat-square" alt="npm downloads" /></a>
-    <a href="https://github.com/thutasann/remex/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/remex.svg?style=flat-square" alt="license" /></a>
+    <a href="https://www.npmjs.com/package/remexjs"><img src="https://img.shields.io/npm/v/remexjs.svg?style=flat-square" alt="npm version" /></a>
+    <a href="https://www.npmjs.com/package/remexjs"><img src="https://img.shields.io/npm/dm/remexjs.svg?style=flat-square" alt="npm downloads" /></a>
+    <a href="https://github.com/thutasann/remex/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/remexjs.svg?style=flat-square" alt="license" /></a>
   </p>
 </div>
 
@@ -33,13 +33,13 @@ Struggling with memory leaks, slow renders, or performance bottlenecks in your R
 
 ```bash
 # Using npm
-npm install remexjs
+npm install remexjs@latest
 
 # Using yarn
-yarn add remexjs
+yarn add remexjs@latest
 
 # Using pnpm
-pnpm add remexjs
+pnpm add remexjs@latest
 ```
 
 ## 🚦 Quick Start
