@@ -33,20 +33,20 @@ Struggling with memory leaks, slow renders, or performance bottlenecks in your R
 
 ```bash
 # Using npm
-npm install remex
+npm install @thutasann/remex
 
 # Using yarn
-yarn add remex
+yarn add @thutasann/remex
 
 # Using pnpm
-pnpm add remex
+pnpm add @thutasann/remex
 ```
 
 ## 🚦 Quick Start
 
 ```jsx
 import React from 'react'
-import { RemexProvider, MemoryProfiler, useMemoryMonitor } from 'remex'
+import { RemexProvider, MemoryProfiler, useMemoryMonitor } from '@thutasann/remex'
 
 // Wrap your app with the RemexProvider
 function App() {
