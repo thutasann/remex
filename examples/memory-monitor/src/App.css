@@ -1,0 +1,152 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.dashboard-container {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.memory-stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.stat-item h3 {
+  margin: 0 0 10px 0;
+  color: #666;
+}
+
+.stat-item p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.controls {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.leaky-component {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ff5252;
+  border-radius: 8px;
+  background-color: #ffecec;
+}
+
+.render-container {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #2196f3;
+  border-radius: 8px;
+  background-color: #e3f2fd;
+}
+
+.render-counter,
+.render-counter-child {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.history-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 100px;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+.history-bar {
+  width: 10px;
+  background-color: #4caf50;
+  margin-right: 2px;
+  min-height: 1px;
+}
