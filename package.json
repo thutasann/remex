@@ -1,24 +1,44 @@
 {
   "name": "remex",
   "version": "0.1.0",
-  "description": "Memory and performance analysis tool for React applications",
+  "description": "Advanced memory and performance analysis tool for React applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build"
   },
   "keywords": [
     "react",
     "memory",
     "performance",
     "analysis",
-    "profiler"
+    "profiler",
+    "heap",
+    "leak",
+    "detection",
+    "render",
+    "optimization"
   ],
   "author": "thutasann",
   "license": "MIT",
+  "homepage": "https://github.com/thutasann/remex",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thutasann/remex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thutasann/remex/issues"
+  },
   "peerDependencies": {
     "react": ">=16.8.0"
   },
