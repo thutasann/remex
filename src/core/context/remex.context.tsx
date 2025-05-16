@@ -1,5 +1,5 @@
-import { RemexOptions } from '@/types'
 import * as React from 'react'
+import { RemexOptions } from '../../types'
 import {
   getConfig,
   getMemoryTracker,

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HeapEdge, HeapNode, HeapNodeType, HeapSnapshot, MemoryMetrics } from '@/types'
-import { generateUniqueId } from '@/utils'
+import { HeapEdge, HeapNode, HeapNodeType, HeapSnapshot, MemoryMetrics } from '../../types'
+import { generateUniqueId } from '../../utils'
 
 /**
  * Heap Snapshot Analyzer

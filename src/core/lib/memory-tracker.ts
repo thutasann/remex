@@ -1,5 +1,5 @@
-import { ComponentMemoryUsage, MemoryMetrics, MemorySnapshot } from '@/types'
-import { generateUniqueId } from '@/utils'
+import { ComponentMemoryUsage, MemoryMetrics, MemorySnapshot } from '../../types'
+import { generateUniqueId } from '../../utils'
 
 /**
  * Core Memory Tracker class

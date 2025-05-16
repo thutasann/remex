@@ -1,5 +1,5 @@
-import { PerformanceEvent, PerformanceEventType, RenderInfo, RenderMetrics } from '@/types'
-import { generateUniqueId } from '@/utils'
+import { PerformanceEvent, PerformanceEventType, RenderInfo, RenderMetrics } from '../../types'
+import { generateUniqueId } from '../../utils'
 
 /**
  * Core Performance Tracker class

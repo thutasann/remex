@@ -1,5 +1,5 @@
-import DEFAULT_CONFIG from '@/configs/default-config'
-import type { RemexOptions } from '@/types'
+import DEFAULT_CONFIG from '../../configs/default-config'
+import type { RemexOptions } from '../../types'
 import { MemoryTracker } from './memory-tracker'
 import { PerformanceTracker } from './performance-tracker'
 

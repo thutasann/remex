@@ -1,4 +1,4 @@
-import { RemexOptions } from '@/types'
+import { RemexOptions } from '../types'
 
 /**
  * Default configuration values
