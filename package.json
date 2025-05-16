@@ -14,7 +14,8 @@
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
     "prepublishOnly": "npm run build",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "example:dev": "cd examples/memory-monitor && npm run dev"
   },
   "keywords": [
     "react",
