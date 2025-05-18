@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MemoryProfiler, useComponentMemory } from 'remexjs'
+import { useComponentMemory } from '../../../../../src'
 
 /**
  * Inefficient Component Memory Usages
@@ -8,7 +8,7 @@ import { MemoryProfiler, useComponentMemory } from 'remexjs'
 export function ComponentMemoryUsagesInefficiencyComponent() {
   const [data, setData] = useState<number[]>([])
   const [unusedState, setUnusedState] = useState<string[]>([])
-  const memoryMetrics = useComponentMemory()
+  const componentMemory = useComponentMemory()
 
   // Create memory leaks by storing data in unused state
   useEffect(() => {
@@ -24,22 +24,20 @@ export function ComponentMemoryUsagesInefficiencyComponent() {
   }, [])
 
   return (
-    <MemoryProfiler id='inefficient-component'>
-      <div className='component inefficient'>
-        <h3>Inefficient Component</h3>
-        <div className='memory-info'>
-          <p>Memory Usage: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
-          <p>Data Length: {data.length}</p>
-          <p>Unused State Length: {unusedState.length}</p>
-        </div>
-        <div className='data-display'>
-          {data.slice(0, 5).map((num) => (
-            <div key={num} className='data-item'>
-              {num}
-            </div>
-          ))}
-        </div>
+    <div className='component inefficient'>
+      <h3>Inefficient Component</h3>
+      <div className='memory-info'>
+        <p>Memory Usage: {(componentMemory.shallowSize / 1024).toFixed(2)} KB</p>
+        <p>Data Length: {data.length}</p>
+        <p>Unused State Length: {unusedState.length}</p>
       </div>
-    </MemoryProfiler>
+      <div className='data-display'>
+        {data.slice(0, 5).map((num) => (
+          <div key={num} className='data-item'>
+            {num}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

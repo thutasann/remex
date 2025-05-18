@@ -16,7 +16,7 @@ type UseMemoryMonitorOptions = {
 }
 
 /**
- * Hook for monitoring memory usage in a component
+ * Hook for monitoring memory usage in the entire application
  */
 export function useMemoryMonitor(options: UseMemoryMonitorOptions = {}) {
   const { interval = 2000, maxSamples = 60, autoStart = true } = options

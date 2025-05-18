@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { MemoryProfiler } from 'remexjs'
 
 // This component simulates a memory leak by storing large arrays
 const LeakyComponent = () => {
@@ -20,14 +19,12 @@ const LeakyComponent = () => {
   }, [])
 
   return (
-    <MemoryProfiler id='leaky-component'>
-      <div className='leaky-component'>
-        <h3>Leaky Component</h3>
-        <p>This component is creating memory leaks.</p>
-        <p>Large arrays created: {leaks.length}</p>
-        <p>Approximate memory usage: {(leaks.length * 1).toFixed(2)} MB</p>
-      </div>
-    </MemoryProfiler>
+    <div className='leaky-component'>
+      <h3>Leaky Component</h3>
+      <p>This component is creating memory leaks.</p>
+      <p>Large arrays created: {leaks.length}</p>
+      <p>Approximate memory usage: {(leaks.length * 1).toFixed(2)} MB</p>
+    </div>
   )
 }
 
