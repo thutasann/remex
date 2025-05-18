@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MemoryProfiler, useComponentMemory } from 'remexjs'
+import { MemoryProfiler, useComponentMemory } from '../../../../../src'
 
 /**
  * Inefficient Component Memory Usages
@@ -8,11 +8,11 @@ import { MemoryProfiler, useComponentMemory } from 'remexjs'
 export function ComponentMemoryUsagesInefficiencyComponent() {
   const [data, setData] = useState<number[]>([])
   const [unusedState, setUnusedState] = useState<string[]>([])
-  const memoryMetrics = useComponentMemory()
 
   // Create memory leaks by storing data in unused state
   useEffect(() => {
     const interval = setInterval(() => {
+      // Create new arrays on every interval
       const newData = Array.from({ length: 1000 }, (_, i) => i)
       setData(newData)
 
@@ -25,21 +25,30 @@ export function ComponentMemoryUsagesInefficiencyComponent() {
 
   return (
     <MemoryProfiler id='inefficient-component'>
-      <div className='component inefficient'>
-        <h3>Inefficient Component</h3>
-        <div className='memory-info'>
-          <p>Memory Usage: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
-          <p>Data Length: {data.length}</p>
-          <p>Unused State Length: {unusedState.length}</p>
-        </div>
-        <div className='data-display'>
-          {data.slice(0, 5).map((num) => (
-            <div key={num} className='data-item'>
-              {num}
-            </div>
-          ))}
-        </div>
-      </div>
+      <InefficientComponentContent data={data} unusedState={unusedState} />
     </MemoryProfiler>
+  )
+}
+
+function InefficientComponentContent({ data, unusedState }: { data: number[]; unusedState: string[] }) {
+  const memoryMetrics = useComponentMemory()
+
+  return (
+    <div className='component inefficient'>
+      <h3>Inefficient Component</h3>
+      <div className='memory-info'>
+        <p>Memory Usage: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
+        <p>Retained Size: {(memoryMetrics.retainedSize / 1024).toFixed(2)} KB</p>
+        <p>Data Length: {data.length}</p>
+        <p>Unused State Length: {unusedState.length}</p>
+      </div>
+      <div className='data-display'>
+        {data.slice(0, 5).map((num) => (
+          <div key={num} className='data-item'>
+            {num}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

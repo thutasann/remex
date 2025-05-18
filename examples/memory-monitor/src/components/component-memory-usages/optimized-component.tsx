@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { MemoryProfiler, useComponentMemory } from 'remexjs'
+import { MemoryProfiler, useComponentMemory } from '../../../../../src'
 
 /**
  * Optimized Component Memory Usages
@@ -7,7 +7,6 @@ import { MemoryProfiler, useComponentMemory } from 'remexjs'
  */
 export function ComponentMemoryUsagesOptimizedComponent() {
   const [data, setData] = useState<number[]>([])
-  const memoryMetrics = useComponentMemory()
 
   // Use memoization to prevent unnecessary recalculations
   const displayData = useMemo(() => {
@@ -30,20 +29,29 @@ export function ComponentMemoryUsagesOptimizedComponent() {
 
   return (
     <MemoryProfiler id='optimized-component'>
-      <div className='component optimized'>
-        <h3>Optimized Component</h3>
-        <div className='memory-info'>
-          <p>Memory Usage: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
-          <p>Data Length: {data.length}</p>
-        </div>
-        <div className='data-display'>
-          {displayData.map((num) => (
-            <div key={num} className='data-item'>
-              {num}
-            </div>
-          ))}
-        </div>
-      </div>
+      <OptimizedComponentContent data={data} displayData={displayData} />
     </MemoryProfiler>
+  )
+}
+
+function OptimizedComponentContent({ data, displayData }: { data: number[]; displayData: number[] }) {
+  const memoryMetrics = useComponentMemory()
+
+  return (
+    <div className='component optimized'>
+      <h3>Optimized Component</h3>
+      <div className='memory-info'>
+        <p>Memory Usage: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
+        <p>Retained Size: {(memoryMetrics.retainedSize / 1024).toFixed(2)} KB</p>
+        <p>Data Length: {data.length}</p>
+      </div>
+      <div className='data-display'>
+        {displayData.map((num) => (
+          <div key={num} className='data-item'>
+            {num}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

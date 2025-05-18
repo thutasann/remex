@@ -61,5 +61,11 @@ export function MemoryProfiler({ children, id, enabled = true, onSnapshot }: Mem
  * @returns Component Memory Usage
  */
 export function useComponentMemoryUsage() {
-  return React.useContext(MemoryProfilerContext)
+  const context = React.useContext(MemoryProfilerContext)
+
+  if (context === undefined) {
+    throw new Error('useComponentMemoryUsage must be used within a MemoryProfiler')
+  }
+
+  return context
 }

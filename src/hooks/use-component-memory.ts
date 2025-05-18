@@ -23,6 +23,7 @@ export function useComponentMemory() {
 
   /** Get memory usage from nearest MemoryProfiler */
   const profiledMemory = useComponentMemoryUsage()
+  console.log('profiledMemory', profiledMemory)
 
   // Update metrics when profiled memory changes
   useEffect(() => {

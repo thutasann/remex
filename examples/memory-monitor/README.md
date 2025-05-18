@@ -5,6 +5,7 @@ This example demonstrates how to use Remex to monitor memory usage and component
 ## Features Demonstrated
 
 - Memory usage monitoring with `useMemoryMonitor`
+- Component Memory monitoring with `useComponentMemory`
 - Memory leak simulation
 - Component render tracking with `useRenderCounter` and `RenderProfiler`
 - Integrating Remex with a React application

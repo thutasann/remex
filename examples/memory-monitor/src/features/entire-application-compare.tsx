@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import { ComponentMemoryUsagesInefficiencyComponent, ComponentMemoryUsagesOptimizedComponent } from '../components'
+import { InefficiencyComponent, OptimizedComponent } from '../components'
 
 /**
  * Compare Components
  * @returns Compare Components
  */
-function CompareComponents() {
+function EntireApplicationCompare() {
   const [showInefficient, setShowInefficient] = useState(false)
   const [showOptimized, setShowOptimized] = useState(false)
 
   return (
     <div>
-      <h1>Remex Memory Monitor Example - Compare Components</h1>
+      <h1>Remex Memory Monitor Example - Entire Application Compare</h1>
 
       <div className='controls-container'>
         <div className='toggle-buttons'>
@@ -34,13 +34,13 @@ function CompareComponents() {
       <div className='components-container'>
         {showInefficient && (
           <div className='component-wrapper inefficient-wrapper'>
-            <ComponentMemoryUsagesInefficiencyComponent />
+            <InefficiencyComponent />
           </div>
         )}
 
         {showOptimized && (
           <div className='component-wrapper optimized-wrapper'>
-            <ComponentMemoryUsagesOptimizedComponent />
+            <OptimizedComponent />
           </div>
         )}
       </div>
@@ -48,4 +48,4 @@ function CompareComponents() {
   )
 }
 
-export default CompareComponents
+export default EntireApplicationCompare

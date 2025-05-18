@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentMemoryUsage, ComponentRegistry, PerformanceExtended } from '../../types'
 
 /**
@@ -108,10 +109,7 @@ class ComponentMemoryTracker {
    * - This is a complex topic that would require deeper browser integration
    * TODO: implement this
    */
-  private trackComponentObjects(componentId: string, component: React.ReactNode): void {
-    console.log('componentId', componentId)
-    console.log('component', component)
-  }
+  private trackComponentObjects(componentId: string, component: React.ReactNode): void {}
 
   /**
    * Estimate object size recursively
