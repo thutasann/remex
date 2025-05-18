@@ -15,7 +15,6 @@ Struggling with memory leaks, slow renders, or performance bottlenecks in your R
 
 - **Track Memory Usage**: Monitor heap size and identify memory leaks in real-time
 - **Analyze Component Performance**: See which components are re-rendering unnecessarily
-- **Generate Heap Snapshots**: Get detailed insights into memory allocation
 - **Optimize User Experience**: Reduce jank and improve application responsiveness
 - **Component-Level Memory Analysis**: Unique feature to track memory usage per component
 
@@ -88,7 +87,6 @@ function ExpensiveComponent() {
 
 - `MemoryProfiler`: Track memory usage of specific components
 - `RenderProfiler`: Monitor render times and frequencies
-- `HeapSnapshotAnalyzer`: Generate and analyze heap snapshots
 
 ### Hooks
 

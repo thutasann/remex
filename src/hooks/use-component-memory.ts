@@ -1,5 +1,5 @@
-import { useComponentMemoryUsage } from 'profiler'
 import { useEffect, useState } from 'react'
+import { useComponentMemoryUsage } from '../profiler'
 
 type ComponentMemoryMetrics = {
   shallowSize: number
