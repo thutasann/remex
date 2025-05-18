@@ -4,7 +4,7 @@ import { ComponentMemoryUsage, ComponentRegistry, PerformanceExtended } from '..
  * Memory Tracker for Each Components
  * @description This class is used to track the memory usage of each component.
  */
-export class ComponentMemoryTracker {
+class ComponentMemoryTracker {
   private componentRegistry = new Map<string, ComponentRegistry>()
   private objectSizeCache = new Map<object, number>()
   private lastGlobalUsage = 0
@@ -157,3 +157,8 @@ export class ComponentMemoryTracker {
     return size
   }
 }
+
+/**
+ * Component Memory Tracker Instance
+ */
+export const componentMemoryTracker = new ComponentMemoryTracker()
