@@ -17,6 +17,7 @@ Struggling with memory leaks, slow renders, or performance bottlenecks in your R
 - **Analyze Component Performance**: See which components are re-rendering unnecessarily
 - **Generate Heap Snapshots**: Get detailed insights into memory allocation
 - **Optimize User Experience**: Reduce jank and improve application responsiveness
+- **Component-Level Memory Analysis**: Unique feature to track memory usage per component
 
 ## ✨ Features
 
@@ -28,6 +29,7 @@ Struggling with memory leaks, slow renders, or performance bottlenecks in your R
 - 🔧 **TypeScript Support**: 100% type-safe API
 - 🛠️ **Extensible**: Designed with an API-first approach
 - 💻 **DevTools Extension** (Coming Soon): Visual interface for easier debugging
+- 🔍 **Component-Specific Memory**: Track memory usage at the component level
 
 ## 🔧 Installation
 
@@ -90,13 +92,15 @@ function ExpensiveComponent() {
 
 ### Hooks
 
-- `useMemoryMonitor`: Get real-time memory metrics
+- `useMemoryMonitor`: Get real-time memory metrics for the entire application
 - `useRenderCounter`: Count and analyze component renders
 - `useComponentMetrics`: Get detailed component performance metrics
+- `useComponentMemory`: Track memory metrics specific to a component
+- `useComponentMemoryUsage`: Lower-level hook for accessing memory data from a `MemoryProfiler`
 
 ## 💡 Examples
 
-### Tracking Memory Usage
+### Tracking Global Memory Usage
 
 ```jsx
 function MemoryDashboard() {
@@ -126,6 +130,48 @@ function MemoryDashboard() {
 }
 ```
 
+### Tracking Component-Specific Memory
+
+```jsx
+// Example usage in a NavBar component
+import React from 'react'
+import { MemoryProfiler, useComponentMemory } from 'remexjs'
+
+function NavBar() {
+  // Get component-specific memory metrics
+  const memoryMetrics = useComponentMemory('NavBar')
+
+  return (
+    <MemoryProfiler id='navbar'>
+      <nav className='navbar'>
+        <h1>My App</h1>
+        <div className='memory-info'>
+          <p>NavBar Memory: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
+        </div>
+        {/* Rest of navbar */}
+      </nav>
+    </MemoryProfiler>
+  )
+}
+
+function SideBar() {
+  // Get component-specific memory metrics
+  const memoryMetrics = useComponentMemory('SideBar')
+
+  return (
+    <MemoryProfiler id='sidebar'>
+      <aside className='sidebar'>
+        <h2>Menu</h2>
+        <div className='memory-info'>
+          <p>SideBar Memory: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
+        </div>
+        {/* Rest of sidebar */}
+      </aside>
+    </MemoryProfiler>
+  )
+}
+```
+
 ### Tracking Component Renders
 
 ```jsx
@@ -151,6 +197,43 @@ function ExpensiveList({ items }) {
 }
 ```
 
+### Comparing Two Components
+
+```jsx
+function ComponentComparison() {
+  return (
+    <div className='comparison'>
+      <div className='component-wrapper'>
+        <h3>Inefficient Component</h3>
+        <MemoryProfiler id='inefficient'>
+          <InefficiencyComponent />
+          <MemoryReadout />
+        </MemoryProfiler>
+      </div>
+
+      <div className='component-wrapper'>
+        <h3>Optimized Component</h3>
+        <MemoryProfiler id='optimized'>
+          <OptimizedComponent />
+          <MemoryReadout />
+        </MemoryProfiler>
+      </div>
+    </div>
+  )
+}
+
+// Reusable component to display memory metrics
+function MemoryReadout() {
+  const memoryMetrics = useComponentMemory()
+
+  return (
+    <div className='memory-readout'>
+      <p>Memory: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
+    </div>
+  )
+}
+```
+
 ## 🔄 How It Works
 
 Remex uses a combination of:
@@ -158,9 +241,21 @@ Remex uses a combination of:
 1. **Performance API**: For high-resolution timing
 2. **Memory API**: For heap size monitoring
 3. **React Profiler**: For component render tracking
-4. **Custom Metrics**: For accurate performance analysis
+4. **Custom Memory Tracking**: For component-level memory analysis
+5. **Heuristic Estimation**: For approximating component-specific memory usage
 
 By integrating directly with React's lifecycle, Remex provides insights that generic profilers can't match.
+
+## 🔬 Component-Specific Memory Tracking
+
+Remex implements an innovative approach to track memory usage at the component level:
+
+- **Before/After Measurement**: Takes memory snapshots before and after component mounting
+- **Object Tracking**: Monitors objects created by specific components
+- **Size Estimation**: Uses heuristics to estimate component memory footprint
+- **History Tracking**: Records memory usage over time for trend analysis
+
+This feature provides unprecedented visibility into which components are consuming memory in your application.
 
 ## 🚀 Roadmap
 
@@ -170,6 +265,7 @@ By integrating directly with React's lifecycle, Remex provides insights that gen
 - Automated performance suggestions
 - Component tree visualization
 - Custom event tracking
+- Enhanced component-specific memory tracking accuracy
 
 ## 🤝 Contributing
 
