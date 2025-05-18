@@ -128,3 +128,24 @@ export type HeapSnapshot = {
   /** Memory metrics at the time of snapshot */
   metrics: MemoryMetrics
 }
+
+/** Window Performance Extended Type Def */
+export type PerformanceExtended = {
+  memory: {
+    usedJSHeapSize: number
+    totalJSHeapSize: number
+    jsHeapSizeLimit: number
+  }
+}
+
+/** Component Registry for Tracking */
+export type ComponentRegistry = {
+  /** component display name */
+  displayName: string
+  /** component instances count */
+  instances: number
+  /** estimated size of the component */
+  estimatedSize: number
+  /** object ids of the component */
+  objectIds: Set<number>
+}
