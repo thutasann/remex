@@ -69,7 +69,6 @@ class ComponentMemoryTracker {
    */
   public getComponentMemoryUsage(componentId: string): ComponentMemoryUsage | null {
     const component = this.componentRegistry.get(componentId)
-    console.log('component', component)
 
     if (!component) {
       console.warn(`[Remex] Componenet not found to get memeory usage`)

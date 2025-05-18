@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useComponentMemory } from '../../../../../src'
+import { MemoryProfiler, useComponentMemory } from '../../../../../src'
 
 /**
  * Inefficient Component Memory Usages
@@ -8,11 +8,11 @@ import { useComponentMemory } from '../../../../../src'
 export function ComponentMemoryUsagesInefficiencyComponent() {
   const [data, setData] = useState<number[]>([])
   const [unusedState, setUnusedState] = useState<string[]>([])
-  const componentMemory = useComponentMemory()
 
   // Create memory leaks by storing data in unused state
   useEffect(() => {
     const interval = setInterval(() => {
+      // Create new arrays on every interval
       const newData = Array.from({ length: 1000 }, (_, i) => i)
       setData(newData)
 
@@ -24,10 +24,21 @@ export function ComponentMemoryUsagesInefficiencyComponent() {
   }, [])
 
   return (
+    <MemoryProfiler id='inefficient-component'>
+      <InefficientComponentContent data={data} unusedState={unusedState} />
+    </MemoryProfiler>
+  )
+}
+
+function InefficientComponentContent({ data, unusedState }: { data: number[]; unusedState: string[] }) {
+  const memoryMetrics = useComponentMemory()
+
+  return (
     <div className='component inefficient'>
       <h3>Inefficient Component</h3>
       <div className='memory-info'>
-        <p>Memory Usage: {(componentMemory.shallowSize / 1024).toFixed(2)} KB</p>
+        <p>Memory Usage: {(memoryMetrics.shallowSize / 1024).toFixed(2)} KB</p>
+        <p>Retained Size: {(memoryMetrics.retainedSize / 1024).toFixed(2)} KB</p>
         <p>Data Length: {data.length}</p>
         <p>Unused State Length: {unusedState.length}</p>
       </div>
