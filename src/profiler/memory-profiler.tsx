@@ -1,46 +1,65 @@
-import * as React from 'react'
-import { generateUniqueId, MemoryProfilerProps, useRemexContext } from '..'
+import React, { useEffect, useRef, useState } from 'react'
+import { componentMemoryTracker, useRemexContext } from '../core'
+import { MemoryProfilerProps } from '../types/components.type'
+import { generateUniqueId } from '../utils/id'
+
+/**
+ * Memory Profiler Context
+ */
+export const MemoryProfilerContext = React.createContext<{
+  shallowSize: number
+  retainedSize: number
+} | null>(null)
 
 /**
  * Memory Profiler Component
  * Tracks memory usage of its children
  */
-export function MemoryProfiler({ children, id, enabled = true, onSnapshot }: MemoryProfilerProps) {
+export function MemoryProfiler({ children, id, enabled = true, onSnapshot }: MemoryProfilerProps): JSX.Element {
   const { memoryTracker, config } = useRemexContext()
-  const componentId = React.useRef(id || `memory-profilder-${generateUniqueId()}`)
+  const componentId = useRef(id || `memory-profiler-${generateUniqueId()}`)
+  const [memoryUsage, setMemoryUsage] = useState<{
+    shallowSize: number
+    retainedSize: number
+  } | null>(null)
 
-  // Register component on mount
-  React.useEffect(() => {
-    if (!enabled || !memoryTracker || !config.trackMemory) {
-      return
-    }
+  useEffect(() => {
+    if (!enabled || !config.trackMemory) return
 
-    memoryTracker.registerComponent(componentId.current, 'MemoryProfiler')
+    componentMemoryTracker.registerComponent(componentId.current, id || MemoryProfiler.name, children)
 
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      memoryTracker.unregisterComponent(componentId.current)
-    }
-  }, [enabled, memoryTracker, config.trackMemory])
-
-  // Set up snapshot callback
-  React.useEffect(() => {
-    if (!enabled || !memoryTracker || !config.trackMemory || !onSnapshot) {
-      return
-    }
+    if (memoryTracker) memoryTracker.registerComponent(componentId.current, id || MemoryProfiler.name)
 
     const intervalId = setInterval(() => {
-      const usage = memoryTracker.getComponentMemoryUsage(componentId.current)
+      const usage = componentMemoryTracker.getComponentMemoryUsage(componentId.current)
 
       if (usage) {
-        onSnapshot(componentId.current, usage.shallowSize, usage.retainedSize)
+        setMemoryUsage({
+          shallowSize: usage.shallowSize,
+          retainedSize: usage.retainedSize,
+        })
+
+        if (onSnapshot) {
+          onSnapshot(componentId.current, usage.shallowSize, usage.retainedSize)
+        }
       }
-    }, config.memorySamplingRate)
+    }, 1000)
 
     return () => {
       clearInterval(intervalId)
+      componentMemoryTracker.unregisterComponent(componentId.current)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      if (memoryTracker) memoryTracker.unregisterComponent(componentId.current)
     }
-  }, [enabled, memoryTracker, config, onSnapshot])
+  }, [enabled, memoryTracker, config.trackMemory, children, id, onSnapshot])
 
-  return <>{children}</>
+  return <MemoryProfilerContext.Provider value={memoryUsage}>{children}</MemoryProfilerContext.Provider>
+}
+
+/**
+ * Hook to use Component Memory Usage
+ * @returns Component Memory Usage
+ */
+export function useComponentMemoryUsage() {
+  return React.useContext(MemoryProfilerContext)
 }

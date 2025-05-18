@@ -1,4 +1,4 @@
-import { ComponentMemoryUsage, MemoryMetrics, MemorySnapshot } from '../../types'
+import { ComponentMemoryUsage, MemoryMetrics, MemorySnapshot, PerformanceExtended } from '../../types'
 import { generateUniqueId } from '../../utils'
 
 /**
@@ -167,8 +167,7 @@ export class MemoryTracker {
    * Capture current memory metrics from the browser
    */
   private captureMemoryMetrics(): MemoryMetrics | null {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const performance = window.performance as any
+    const performance = window.performance as unknown as PerformanceExtended
 
     if (!performance || !performance.memory) {
       console.warn('Performance.memory API is not available in the browser')

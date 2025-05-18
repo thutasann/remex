@@ -16,7 +16,7 @@ import {
  * @description This type is used to store the Remex context.
  */
 type RemexContextType = {
-  /** Memory Tracker Instance */
+  /** Global Memory Tracker Instance */
   memoryTracker: MemoryTracker | null
   /** Performance Tracker Instance */
   performanceTracker: PerformanceTracker | null
