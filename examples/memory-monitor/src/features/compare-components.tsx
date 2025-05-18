@@ -1,6 +1,10 @@
 import { useState } from 'react'
-import { InefficiencyComponent, OptimizedComponent } from '../components'
+import { ComponentMemoryUsagesInefficiencyComponent, ComponentMemoryUsagesOptimizedComponent } from '../components'
 
+/**
+ * Compare Components
+ * @returns Compare Components
+ */
 function CompareComponents() {
   const [showInefficient, setShowInefficient] = useState(false)
   const [showOptimized, setShowOptimized] = useState(false)
@@ -31,13 +35,13 @@ function CompareComponents() {
       <div className='components-container'>
         {showInefficient && (
           <div className='component-wrapper inefficient-wrapper'>
-            <InefficiencyComponent />
+            <ComponentMemoryUsagesInefficiencyComponent />
           </div>
         )}
 
         {showOptimized && (
           <div className='component-wrapper optimized-wrapper'>
-            <OptimizedComponent />
+            <ComponentMemoryUsagesOptimizedComponent />
           </div>
         )}
       </div>
